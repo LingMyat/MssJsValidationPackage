@@ -1,0 +1,19 @@
+{
+    "name": "lingmyat/mss-js-validation",
+    "description": "This will validate request from blade without reload",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lingmyat\\MssJsValidation\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "LingMyat",
+            "email": "bizkits223@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
