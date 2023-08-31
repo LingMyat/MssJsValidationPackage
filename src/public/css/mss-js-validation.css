@@ -1,0 +1,18 @@
+.error {
+    border: 1px solid #ff4d49;
+    border-color: #ff4d49 !important;
+}
+.error:focus {
+    border: 1px solid #ff4d49 !important;
+    border-color: #ff4d49 !important;
+}
+
+.resolve {
+    border: 1px solid #43DAB5;
+    border-color: #43DAB5 !important;
+}
+
+.resolve:focus {
+    border: 1px solid #43DAB5 !important;
+    border-color: #43DAB5 !important;
+}
