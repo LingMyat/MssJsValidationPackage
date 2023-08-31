@@ -17,7 +17,7 @@ class MssJsValidationContainer implements MssJsValidationFrame
 
     public function script(array $array) :string
     {
-        $keys           = json_encode($array['keys']);
+        $keys           = json_encode(array_keys($array['request']->rules()));
         $rules          = json_encode($array['request']->rules());
         $messages       = json_encode($array['request']->messages()??[]);
         $select2        = isset($array['select2'])? $array['select2']: 0;
