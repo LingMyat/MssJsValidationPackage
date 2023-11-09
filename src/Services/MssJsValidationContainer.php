@@ -7,12 +7,12 @@ use Lingmyat\MssJsValidation\Contracts\MssJsValidationFrame;
 
 class MssJsValidationContainer implements MssJsValidationFrame
 {
-    public function validate(Request $request) :void
+    public function validate(Request $request): void
     {
-        $rules      = json_decode($request->rules, true);
-        $messages   = json_decode($request->messages, true);
-        $messages   = $messages?$messages:[];
-        $request->validate($rules,$messages);
+        $rules = $request->json('rules', []);
+        $messages = $request->json('messages', []);
+
+        $request->validate($rules, $messages);
     }
 
     public function script(array $array) :string
