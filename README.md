@@ -28,16 +28,7 @@ After Installation you need to init package in  **config/app.php**
 
 ```html
 
-'providers' => ServiceProvider::defaultProviders()->merge([
-    /*
-     * Package Service Providers...
-     */
-    Lingmyat\MssJsValidation\MssJsValidationServiceProvider::class,
-    /*
-     * Application Service Providers...
-     */
-    App\Providers\AppServiceProvider::class,
-])->toArray(),
+Lingmyat\MssJsValidation\MssJsValidationServiceProvider::class,
 
 ```
 
@@ -45,9 +36,7 @@ Then you need to add aliases
 
 ```html
 
-'aliases' => Facade::defaultAliases()->merge([
-    "MssValidation" => Lingmyat\MssJsValidation\Facades\MssValidation::class,
-])->toArray(),
+"MssValidation" => Lingmyat\MssJsValidation\Facades\MssValidation::class,
 
 ```
 
@@ -64,7 +53,9 @@ php artisan vendor:publish --tag=mss-js-validation --force
 ```html
 
 <head>
-    <link rel="stylesheet" href="{{asset('vendor/mss-js-validation/css/mss-js-validation.min.css')}}">
+    <link 
+    rel="stylesheet" 
+    href="{{asset('vendor/mss-js-validation/css/mss-js-validation.min.css')}}">
 </head>
 
 <form>
@@ -76,10 +67,29 @@ php artisan vendor:publish --tag=mss-js-validation --force
 
 <script src="{{asset('vendor/mss-js-validation/js/mss-js-validation.min.js')}}"></script>
 
+@php
+    class Validator {
+        function rules(): array {
+            return [
+                'name'  => 'required|max:255',
+                'email' => 'required',
+            ];
+        }
+
+        function messages(): array {
+            return [
+                'name.required'  => 'Name is required',
+                'name.max'       => 'Name should not more than 225 characters'
+                'email.required' => 'Email is required',
+            ];
+        }
+    }
+@endphp
+
 <!-- Laravel Javascript Validation -->
 
 {!! MssValidation::script([
-    'request'   => new App\Http\Requests\MyFormRequest()
+    'request'   => new Validator()
 ]) !!}
 
 ```
@@ -89,8 +99,18 @@ If you are using Jquery select2 Plugin you can use like this
 ```html
 
 {!! MssValidation::script([
-    'request'   => new App\Http\Requests\MyFormRequest(),
+    'request'   => new Validator(),
     'select2'   => true
+]) !!}
+
+```
+
+Or you can use normal request like this
+
+```html
+
+{!! MssValidation::script([
+    'request'   => new App\Http\Requests\YourRequestClass(),
 ]) !!}
 
 ```
