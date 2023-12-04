@@ -34,8 +34,10 @@ class MssJsValidationContainer implements MssJsValidationFrame
 
                         if($('#submit-btn').length > 0) {
                             submitBtn = $('#submit-btn');
-                        } else {
+                        } else if($('button[type='+'submit'+']').length > 0) {
                             submitBtn = $('button[type='+'submit'+']');
+                        } else {
+                            submitBtn = $('input[type='+'submit'+']');
                         }
 
                         submitBtn.click(function (e) {
